@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 //Set characteristic of an individual card
 function Card({ deck }) {
   const history = useHistory();
+  const { url } = useRouteMatch();
 
   const { cards = [] } = deck;
 
@@ -68,6 +69,12 @@ function Card({ deck }) {
           You need at least 3 cards to study. There are {cards.length} cards in
           this deck.
         </p>
+        <button
+          onClick={() => history.push(`${url.replace("/study", "")}/cards/new`)}
+          className="btn btn-primary mr-5"
+        >
+          Add Cards
+        </button>
       </div>
     );
   }
