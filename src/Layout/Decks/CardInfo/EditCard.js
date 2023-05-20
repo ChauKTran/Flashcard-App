@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { readDeck, readCard, updateCard } from "../../../utils/api";
+import Form from "./Form";
 
 function EditCard() {
   const { deckId, cardId } = useParams();
@@ -72,41 +73,14 @@ function EditCard() {
       </nav>
 
       <h2>Edit Card</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="front">Front</label>
-          <textarea
-            className="form-control"
-            id="front"
-            name="front"
-            placeholder="Front side of card"
-            value={front}
-            onChange={(event) => setFront(event.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="back">Back</label>
-          <textarea
-            className="form-control"
-            id="back"
-            name="back"
-            placeholder="Back side of card"
-            value={back}
-            onChange={(event) => setBack(event.target.value)}
-            required
-          />
-        </div>
-
-        <button className="btn btn-secondary mr-2" onClick={handleCancel}>
-          Cancel
-        </button>
-        <button className="btn btn-primary" type="submit">
-          Save
-        </button>
-      </form>
+      <Form
+        front={front}
+        back={back}
+        setFront={setFront}
+        setBack={setBack}
+        submitHandler={handleSubmit}
+        handleCancel={handleCancel}
+      />
     </div>
   );
 }

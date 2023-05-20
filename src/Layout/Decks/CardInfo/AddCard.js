@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { readDeck, createCard } from "../../../utils/api";
+import Form from "./Form";
 
 function AddCard() {
   const { deckId } = useParams();
@@ -48,42 +49,14 @@ function AddCard() {
         </ol>
       </nav>
       <h2>{deck.name}: Add Card</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="front">Front</label>
-          <textarea
-            className="form-control"
-            id="front"
-            rows="3"
-            placeholder="Front side of card"
-            value={front}
-            onChange={handleFrontChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="back">Back</label>
-          <textarea
-            className="form-control"
-            id="back"
-            rows="3"
-            placeholder="Back side of card"
-            value={back}
-            onChange={handleBackChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary mr-2">
-          Save
-        </button>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={handleDone}
-        >
-          Done
-        </button>
-      </form>
+      <Form
+        front={front}
+        back={back}
+        setFront={setFront}
+        setBack={setBack}
+        handleSubmit={handleSubmit}
+        handleCancel={handleDone}
+      />
     </div>
   );
 }
